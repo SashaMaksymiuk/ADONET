@@ -1,0 +1,40 @@
+@page
+@model Lab_4.Pages.Tickets.CreateModel
+@{
+    ViewData["Title"] = "Новий квиток";
+}
+
+<h2>Оформлення квитка (Razor Pages)</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="Ticket.PassengerId" class="form-label"></label>
+                <select asp-for="Ticket.PassengerId" class="form-select" asp-items="Model.PassengersList"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.TrainId" class="form-label"></label>
+                <select asp-for="Ticket.TrainId" class="form-select" asp-items="Model.TrainsList"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.CarriageNumber" class="form-label"></label>
+                <input asp-for="Ticket.CarriageNumber" class="form-control" type="number" min="1" value="1" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.CarriageTypeId" class="form-label"></label>
+                <select asp-for="Ticket.CarriageTypeId" class="form-select" asp-items="Model.CarriageTypesList"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.DepartureDate" class="form-label"></label>
+                <input asp-for="Ticket.DepartureDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.UrgencySurcharge" class="form-label"></label>
+                <input asp-for="Ticket.UrgencySurcharge" class="form-control" type="number" step="0.01" value="0.00" />
+            </div>
+            <button type="submit" class="btn btn-success">Створити</button>
+            <a asp-page="./Index" class="btn btn-secondary">Назад</a>
+        </form>
+    </div>
+</div>

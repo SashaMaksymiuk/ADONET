@@ -1,0 +1,26 @@
+@page "{id:int}"
+@model Lab_4.Pages.Tickets.DeleteModel
+@{
+    ViewData["Title"] = "Видалення";
+}
+
+<h2>Видалення квитка</h2>
+<h4 class="text-danger">Ви впевнені, що хочете видалити цей квиток?</h4>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Пасажир</dt>
+        <dd class="col-sm-9">@Model.Ticket.Passenger?.FullName</dd>
+
+        <dt class="col-sm-3">Поїзд</dt>
+        <dd class="col-sm-9">№@Model.Ticket.Train?.TrainNumber (@Model.Ticket.Train?.Destination?.Name)</dd>
+
+        <dt class="col-sm-3">Дата</dt>
+        <dd class="col-sm-9">@Model.Ticket.DepartureDate</dd>
+    </dl>
+    
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Підтвердити видалення</button>
+        <a asp-page="./Index" class="btn btn-secondary">Скасувати</a>
+    </form>
+</div>

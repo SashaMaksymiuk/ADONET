@@ -1,0 +1,41 @@
+@page "{id:int}"
+@model Lab_4.Pages.Tickets.EditModel
+@{
+    ViewData["Title"] = "Редагування";
+}
+
+<h2>Редагування квитка №@Model.Ticket.Id</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <input type="hidden" asp-for="Ticket.Id" />
+            <div class="mb-3">
+                <label asp-for="Ticket.PassengerId" class="form-label"></label>
+                <select asp-for="Ticket.PassengerId" class="form-select" asp-items="Model.PassengersList"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.TrainId" class="form-label"></label>
+                <select asp-for="Ticket.TrainId" class="form-select" asp-items="Model.TrainsList"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.CarriageNumber" class="form-label"></label>
+                <input asp-for="Ticket.CarriageNumber" class="form-control" type="number" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.CarriageTypeId" class="form-label"></label>
+                <select asp-for="Ticket.CarriageTypeId" class="form-select" asp-items="Model.CarriageTypesList"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.DepartureDate" class="form-label"></label>
+                <input asp-for="Ticket.DepartureDate" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ticket.UrgencySurcharge" class="form-label"></label>
+                <input asp-for="Ticket.UrgencySurcharge" class="form-control" type="number" step="0.01" />
+            </div>
+            <button type="submit" class="btn btn-primary">Зберегти зміни</button>
+            <a asp-page="./Index" class="btn btn-secondary">Скасувати</a>
+        </form>
+    </div>
+</div>
