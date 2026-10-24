@@ -1,0 +1,57 @@
+@model IEnumerable<Lab_3.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Журнал квитків";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Резервування квитків (Лабораторна робота №3: ASP.NET Core MVC)</h2>
+    <a asp-action="Create" class="btn btn-primary">+ Забронювати новий квиток</a>
+</div>
+
+<table class="table table-bordered table-striped table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>№</th>
+            <th>Пасажир / Телефон</th>
+            <th>Поїзд / Маршрут</th>
+            <th>Вагон / Тип</th>
+            <th>Дата / Час</th>
+            <th>Тариф</th>
+            <th>Доплати</th>
+            <th>Разом</th>
+            <th class="text-center">Дії</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><strong>@item.Id</strong></td>
+            <td>
+                <strong>@item.Passenger?.FullName</strong><br />
+                <small class="text-muted">@item.Passenger?.Phone</small>
+            </td>
+            <td>
+                №@item.Train?.TrainNumber (@item.Train?.TrainType)<br />
+                <span class="badge bg-secondary">до @item.Train?.Destination?.Name</span>
+            </td>
+            <td>№@item.CarriageNumber (@item.CarriageType?.TypeName)</td>
+            <td>
+                @item.DepartureDate<br />
+                <small>@item.Train?.DepartureTime — @item.Train?.ArrivalTime</small>
+            </td>
+            <td>@item.Train?.Destination?.BaseFare.ToString("F2") грн</td>
+            <td>
+                <small>Вагон: +@item.CarriageType?.Surcharge.ToString("F2")</small><br />
+                <small>Терм.: +@item.UrgencySurcharge.ToString("F2")</small>
+            </td>
+            <td><strong>@item.TotalCost.ToString("F2") грн</strong></td>
+            <td class="text-center">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Редагувати</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Видалити</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

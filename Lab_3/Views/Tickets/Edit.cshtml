@@ -1,0 +1,41 @@
+@model Lab_3.Models.Ticket
+
+@{
+    ViewData["Title"] = "Редагування";
+}
+
+<h2>Редагування квитка №@Model.Id</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label asp-for="PassengerId" class="form-label"></label>
+                <select asp-for="PassengerId" class="form-select" asp-items="ViewBag.PassengerId"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="TrainId" class="form-label"></label>
+                <select asp-for="TrainId" class="form-select" asp-items="ViewBag.TrainId"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CarriageNumber" class="form-label"></label>
+                <input asp-for="CarriageNumber" class="form-control" type="number" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="CarriageTypeId" class="form-label"></label>
+                <select asp-for="CarriageTypeId" class="form-select" asp-items="ViewBag.CarriageTypeId"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DepartureDate" class="form-label"></label>
+                <input asp-for="DepartureDate" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="UrgencySurcharge" class="form-label"></label>
+                <input asp-for="UrgencySurcharge" class="form-control" type="number" step="0.01" />
+            </div>
+            <button type="submit" class="btn btn-primary">Оновити</button>
+            <a asp-action="Index" class="btn btn-secondary">Скасувати</a>
+        </form>
+    </div>
+</div>
